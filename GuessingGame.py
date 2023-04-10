@@ -3,27 +3,34 @@ import random
 def display_heading():
     print("Welcome to the Guessing Game!")
     print("-----------------------------")
+    
+def play_game(LIMIT):    
+    number = random.randint(1, LIMIT)
+    print(f"I'm thinking of a number from 1 to {LIMIT}\n")
+    count = 1
+    guess = int(input("Your guess: "))
 
-def play_game(limit):
-    random_number = random.randint(1, limit)
-    print(f"I'm thinking of a number between 1 and {limit}. Can you guess it?")
-    while True:
-        user_guess = int(input("Enter your guess: "))
-        if user_guess < random_number:
-            print("Too low! Guess again.")
-        elif user_guess > random_number:
-            print("Too high! Guess again.")
-        else:
-            print("Congratulations! You guessed the number.")
-            break
-display_heading()
+    while (guess != number):
+        if guess < number:
+            print("Your guess is too low. Try again!")
+            count += 1
+        elif guess > number:
+            print("You guessed too high. Try again!")
+            count += 1
+        guess = int(input("Your guess: "))
+    print(f"congratulations! You guessed it in {count} tries.\n")
+     
+def main():
+    display_heading()
+    again = "y"
+    while again.lower() == "y":
+        LIMIT = int(input("Enter the limit: "))
+        play_game(LIMIT)
+        again = input("Do you want to play again? (y/n): ")
+        print()
+    print("Bye!")
 
-while True:
-    limit = int(input("Enter a limit for the game: "))
-    play_game(limit)
-    play_again = input("Do you want to play again? (y/n): ")
-    if play_again.lower() == "n":
-        break
-
-print("Thanks for playing!")
+# if started as the main module, call the main function
+if __name__ == "__main__":
+    main()
 
