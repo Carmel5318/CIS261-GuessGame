@@ -1,3 +1,6 @@
+#Niki Dekcer
+#CIS261
+#Guess Game
 import random
 
 def display_heading():
